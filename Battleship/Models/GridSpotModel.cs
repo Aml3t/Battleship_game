@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Battleship.Models
 {
-    public class GrindSpotModel
+    public class GridSpotModel
     {
         public string SpotLetter { get; set; }
         public int SpotNumber { get; set; }
+        public GridSpotStatus Status { get; set; } = GridSpotStatus.Empty;
 
-        public GrindSpotModel(string letter, int number)
+
+        public GridSpotModel(string letter, int number)
         {
             SpotLetter = letter;
             SpotNumber = number;
