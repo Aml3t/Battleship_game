@@ -8,18 +8,18 @@ namespace Battleship.Models
 {
     public class GrindSpotModel
     {
-        public char Letter { get; set; }
-        public int Number { get; set; }
+        public string SpotLetter { get; set; }
+        public int SpotNumber { get; set; }
 
-        public GrindSpotModel(char letter, int number)
+        public GrindSpotModel(string letter, int number)
         {
-            Letter = letter;
-            Number = number;
+            SpotLetter = letter;
+            SpotNumber = number;
         }
 
         public override string ToString()
         {
-            return $"{Letter}{Number}";
+            return $"{SpotLetter}{SpotNumber}";
         }
     }
 }
