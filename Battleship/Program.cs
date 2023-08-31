@@ -72,7 +72,7 @@ namespace Battleship
 
                 if (bufferList1.Contains(hit1))
                 {
-                    Console.WriteLine("You already shot to that spot! Choose another.");
+                    Console.WriteLine($"You already shot to the {hit1} spot! Choose another next time.");
                 }
                 else
                 {
