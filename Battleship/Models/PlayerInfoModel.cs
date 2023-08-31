@@ -1,9 +1,10 @@
-﻿namespace Battleship
+﻿namespace Battleship.Models
 {
-    public class Player
+    public class PlayerInfoModel
     {
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
     }
 }

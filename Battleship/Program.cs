@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battleship.Models;
 
 namespace Battleship
 {
@@ -9,8 +10,8 @@ namespace Battleship
         static void Main(string[] args)
         {
 
-            Player user1 = new Player();
-            Player user2 = new Player();
+            PlayerInfoModel user1 = new PlayerInfoModel();
+            PlayerInfoModel user2 = new PlayerInfoModel();
 
             Console.Write($"Player 1 enter your First Name: ");
             user1.FirstName = Console.ReadLine();
