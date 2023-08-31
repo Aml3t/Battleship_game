@@ -54,22 +54,33 @@ namespace Battleship
             Console.WriteLine($"Second Player boat positions: {list2}");
 
 
-            Console.WriteLine("Player 1 give coordinates: ");
-
             List<string> grind1hits = new List<string>();
             List<string> grind2hits = new List<string>();
 
             grind1hits.AddRange(user1List);
             grind2hits.AddRange(user2List);
 
+            List<string> bufferList1 = new List<string>();
+            List<string> bufferList2 = new List<string>();
+
+
 
             while (grind1hits.Count != 0 || grind2hits.Count != 0)
             {
-                Console.WriteLine("Player 1 give coordinates: ");
+                Console.Write("Player 1 give coordinates: ");
                 string hit1 = Console.ReadLine();
-                if (grind2hits.Contains(hit1))
+
+                if (bufferList1.Contains(hit1))
                 {
-                    grind2hits.Remove(hit1);
+                    Console.WriteLine("You already shot to that spot! Choose another.");
+                }
+                else
+                {
+                    if (grind2hits.Contains(hit1))
+                    {
+                        grind2hits.Remove(hit1);
+                        bufferList1.Add(hit1);
+                    }
                 }
 
                 if (grind2hits.Count ==0)
@@ -78,7 +89,7 @@ namespace Battleship
                     break;
                 }
 
-                Console.WriteLine("Player 2 give coordinates: ");
+                Console.Write("Player 2 give coordinates: ");
                 string hit2 = Console.ReadLine();
 
                 if (grind1hits.Contains(hit2))
