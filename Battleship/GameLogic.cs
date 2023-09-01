@@ -11,7 +11,9 @@ namespace Battleship
     {
         public static void InitializeGrid(PlayerInfoModel model)
         {
+            List<string> letters = new List<string> { "A", "B", "C", "D", "E" };
 
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
         }
     }
 }
