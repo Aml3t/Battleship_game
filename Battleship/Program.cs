@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using Battleship.Models;
 
 namespace Battleship
@@ -33,7 +34,7 @@ namespace Battleship
             GameLogic.InitializeGrid(output);
 
             // Ask the user for their 5 ship placements
-
+            PlaceShips(output);
             // Clear
 
             return output;
@@ -46,10 +47,22 @@ namespace Battleship
             return output;
         }
 
-        private static void SetGrid(PlayerInfoModel model)
+        private static void PlaceShips(PlayerInfoModel model)
         {
+            do
+            {
+                Console.Write($"Place the ship number {model.ShipLocation.Count + 1}: ");
+                string location = Console.ReadLine();
+
+                bool isValidLocation = GameLogic.PlaceShip(model, location);
+
+                if (isValidLocation == false)
+                {
+                    Console.WriteLine("You entered a wrong location. Try again");
+                }
+
+            } while (model.ShipLocation.Count < 5);
 
         }
-
     }
 }
