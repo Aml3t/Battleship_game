@@ -13,18 +13,6 @@ namespace Battleship
             WelcomeMessage();
 
 
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    Console.Write($"Enter ship's number {i + 1} location Letter: ");
-            //    string hitLetter = Console.ReadLine();
-            //    Console.Write($"Enter ship's number {i + 1} location Number: ");
-            //    string hitNumber = Console.ReadLine();
-            //    string hit = string.Concat(hitLetter, hitNumber);
-
-            //    //playerOne.ShipLocation.Add(hit);
-            //}
-
         }
 
         private static void WelcomeMessage()
@@ -37,7 +25,16 @@ namespace Battleship
         private static PlayerInfoModel CreatePlayer()
         {
             PlayerInfoModel output = new PlayerInfoModel();
+
+            // Ask users name
             output.UsersName = AskForUsersName();
+
+            // Load up the shot grid
+            GameLogic.InitializeGrid(output);
+
+            // Ask the user for their 5 ship placements
+
+            // Clear
 
             return output;
         }
@@ -49,6 +46,10 @@ namespace Battleship
             return output;
         }
 
+        private static void SetGrid(PlayerInfoModel model)
+        {
+
+        }
 
     }
 }
