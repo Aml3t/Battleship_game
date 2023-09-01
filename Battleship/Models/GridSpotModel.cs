@@ -13,15 +13,15 @@ namespace Battleship.Models
         public GridSpotStatus Status { get; set; } = GridSpotStatus.Empty;
 
 
-        public GridSpotModel(string letter, int number)
-        {
-            SpotLetter = letter;
-            SpotNumber = number;
-        }
+        //public GridSpotModel(string letter, int number)
+        //{
+        //    SpotLetter = letter;
+        //    SpotNumber = number;
+        //}
 
-        public override string ToString()
-        {
-            return $"{SpotLetter}{SpotNumber}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"{SpotLetter}{SpotNumber}";
+        //}
     }
 }
