@@ -13,6 +13,11 @@ namespace Battleship
         {
             WelcomeMessage();
 
+            PlayerInfoModel player1 = CreatePlayer("Player 1");
+
+            PlayerInfoModel player2 = CreatePlayer("Player 1");
+
+
 
         }
 
@@ -23,8 +28,9 @@ namespace Battleship
             Console.WriteLine();
         }
 
-        private static PlayerInfoModel CreatePlayer()
+        private static PlayerInfoModel CreatePlayer(string playerTitle)
         {
+            Console.WriteLine($"Player information for {playerTitle}");
             PlayerInfoModel output = new PlayerInfoModel();
 
             // Ask users name
@@ -35,7 +41,9 @@ namespace Battleship
 
             // Ask the user for their 5 ship placements
             PlaceShips(output);
-            // Clear
+
+            // Clear the screen
+            Console.Clear();
 
             return output;
         }
