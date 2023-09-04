@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Battleship
@@ -25,7 +26,7 @@ namespace Battleship
         }
         public static bool PlaceShip(PlayerInfoModel model, string location)
         {
-            if (location.Length == 2)
+            if (location.Length == 2 && Regex.IsMatch(location,"^[A-E][1-5]"))
             {
                 GridSpotModel output = new GridSpotModel();
                 char firstCharacter = location[0];
