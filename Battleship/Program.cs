@@ -26,14 +26,33 @@ namespace Battleship
                 // Ask activePlayer of a spot
                 // Determine if it is a valid shot
                 // Determine shot results
-                // Determine if the game is over
+                RecordPlayerShot(activePlayer, opponent);
+
+                // Determine if the game should continue
+                bool doesGameContinue = GameLogic.PlayerStillActive(opponent);
+
+
                 // If true, set activePlayer as winner
                 // else, swap positions (activePlayer to opponent)
+
+                if (doesGameContinue == true)
+                {
+
+                }
+                else
+                {
+                    winner = activePlayer;
+                }
 
             } while (winner == null);
 
             Console.ReadLine();
 
+        }
+
+        private static void RecordPlayerShot(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
+        {
+            throw new NotImplementedException();
         }
 
         private static void DisplayShotGrid(PlayerInfoModel activePlayer)

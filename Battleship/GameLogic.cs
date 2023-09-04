@@ -44,6 +44,11 @@ namespace Battleship
 
         }
 
+        internal static bool PlayerStillActive(PlayerInfoModel opponent)
+        {
+            throw new NotImplementedException();
+        }
+
         private static void AddGridSpot(PlayerInfoModel model, string letter, int number)
         {
             GridSpotModel spot = new GridSpotModel
