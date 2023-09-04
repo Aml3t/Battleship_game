@@ -25,14 +25,22 @@ namespace Battleship
         }
         public static bool PlaceShip(PlayerInfoModel model, string location)
         {
-            GridSpotModel output = new GridSpotModel();
-            char firstCharacter = location[0];
-            //int secondCharacter = location[1];
-            output.SpotLetter = firstCharacter.ToString();
-            output.SpotNumber = int.Parse(location[1].ToString());
-            output.Status = GridSpotStatus.Ship;
-            model.ShipLocation.Add(output);
-            return true;
+            if (location.Length == 2)
+            {
+                GridSpotModel output = new GridSpotModel();
+                char firstCharacter = location[0];
+                //int secondCharacter = location[1];
+                output.SpotLetter = firstCharacter.ToString();
+                output.SpotNumber = int.Parse(location[1].ToString());
+                output.Status = GridSpotStatus.Ship;
+                model.ShipLocation.Add(output);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         private static void AddGridSpot(PlayerInfoModel model, string letter, int number)

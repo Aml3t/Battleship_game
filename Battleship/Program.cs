@@ -69,6 +69,7 @@ namespace Battleship
                 if (isValidLocation == false)
                 {
                     Console.WriteLine("You entered a wrong location. Try again");
+                    continue;
                 }
 
             } while (model.ShipLocation.Count < 5);
