@@ -50,7 +50,7 @@ namespace Battleship
 
                 if (gridSpot.Status == GridSpotStatus.Empty)
                 {
-                    Console.Write($"{gridSpot.SpotLetter}{gridSpot.SpotNumber}");
+                    Console.Write($" {gridSpot.SpotLetter}{gridSpot.SpotNumber} ");
                 }
                 else if (gridSpot.Status == GridSpotStatus.Hit)
                 {
