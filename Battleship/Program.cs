@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Battleship.Models;
@@ -13,12 +14,57 @@ namespace Battleship
         {
             WelcomeMessage();
 
-            PlayerInfoModel player1 = CreatePlayer("Player 1");
+            PlayerInfoModel activePlayer = CreatePlayer("Player 1");
+            PlayerInfoModel opponent = CreatePlayer("Player 2");
+            PlayerInfoModel winner = null;
 
-            PlayerInfoModel player2 = CreatePlayer("Player 2");
+            do
+            {
+                // Display grind from activePlayer on where they fired
+                DisplayShotGrid(activePlayer);
 
+                // Ask activePlayer of a spot
+                // Determine if it is a valid shot
+                // Determine shot results
+                // Determine if the game is over
+                // If true, set activePlayer as winner
+                // else, swap positions (activePlayer to opponent)
 
+            } while (winner == null);
 
+            Console.ReadLine();
+
+        }
+
+        private static void DisplayShotGrid(PlayerInfoModel activePlayer)
+        {
+            string currentRow = activePlayer.ShotGrind[0].SpotLetter;
+
+            foreach (var gridSpot in activePlayer.ShotGrind)
+            {
+                if (gridSpot.SpotLetter != currentRow)
+                {
+                    Console.WriteLine();
+                    currentRow = gridSpot.SpotLetter;
+                }
+
+                if (gridSpot.Status == GridSpotStatus.Empty)
+                {
+                    Console.Write($"{gridSpot.SpotLetter}{gridSpot.SpotNumber}");
+                }
+                else if (gridSpot.Status == GridSpotStatus.Hit)
+                {
+                    Console.Write(" X ");
+                }
+                else if (gridSpot.Status == GridSpotStatus.Miss)
+                {
+                    Console.Write(" O ");
+                }
+                else
+                {
+                    Console.Write(" ? ");
+                }
+            }
         }
 
         private static void WelcomeMessage()
@@ -62,7 +108,7 @@ namespace Battleship
             do
             {
                 Console.Write($"Place the ship number {model.ShipLocation.Count + 1}: ");
-                string location = Console.ReadLine();
+                string location = Console.ReadLine(); 
 
                 bool isValidLocation = GameLogic.PlaceShip(model, location);
 
