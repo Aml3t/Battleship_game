@@ -49,6 +49,16 @@ namespace Battleship
             throw new NotImplementedException();
         }
 
+        internal static bool IdentifyShotResult(PlayerInfoModel opponent, string row, int column)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void MarkShotResults(PlayerInfoModel activePlayer, string row, int column, bool isAHit)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static bool PlayerStillActive(PlayerInfoModel opponent)
         {
             throw new NotImplementedException();

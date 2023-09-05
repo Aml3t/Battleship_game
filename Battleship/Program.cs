@@ -60,10 +60,12 @@ namespace Battleship
         private static void RecordPlayerShot(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
         {
             bool isValidShot = false;
+            string row = "";
+            int column = 0;
             do
             {
                 string shot = AskForShot();
-                (string row, int column) = GameLogic.SplitShotIntoRowAndColumn(shot);
+                (row, column) = GameLogic.SplitShotIntoRowAndColumn(shot);
                 isValidShot = GameLogic.ValidateShot(activePlayer, row, column);
 
                 if (isValidShot == false)
@@ -72,6 +74,12 @@ namespace Battleship
                 }
 
             } while (isValidShot == false);
+
+            // Determine shot results
+            bool isAHit = GameLogic.IdentifyShotResult(opponent, row, column);
+
+            // Record results
+            GameLogic.MarkShotResults(activePlayer, row, column, isAHit);
 
         }
 
