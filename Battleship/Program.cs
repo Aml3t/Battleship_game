@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Battleship.Models;
@@ -31,12 +32,15 @@ namespace Battleship
                 // Determine if the game should continue
                 bool doesGameContinue = GameLogic.PlayerStillActive(opponent);
 
-
-                // If true, set activePlayer as winner
-                // else, swap positions (activePlayer to opponent)
-
                 if (doesGameContinue == true)
                 {
+                    //// Swap using a temp variable
+                    //PlayerInfoModel tempUser = opponent;
+                    //opponent = activePlayer;
+                    //activePlayer = tempUser;
+
+                    // Swap using Tuple
+                    (activePlayer, opponent) = (opponent, activePlayer);
 
                 }
                 else
@@ -44,7 +48,7 @@ namespace Battleship
                     winner = activePlayer;
                 }
 
-            } while (winner == null);
+            } while (winner != null);
 
             Console.ReadLine();
 
@@ -52,7 +56,16 @@ namespace Battleship
 
         private static void RecordPlayerShot(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
         {
-            throw new NotImplementedException();
+            Console.Write("Enter coordinates for a hit: ");
+            string hit = Console.ReadLine();
+            if (hit.Length == 2 && Regex.IsMatch(hit, "^[A-E][1-5]"))
+            {
+                activePlayer.ShotGrind.
+            }
+            else
+            {
+                continue;
+            }
         }
 
         private static void DisplayShotGrid(PlayerInfoModel activePlayer)
