@@ -44,7 +44,22 @@ namespace Battleship
 
         }
 
+        internal static int GetShotCount(PlayerInfoModel winner)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static bool PlayerStillActive(PlayerInfoModel opponent)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static (string row, int column) SplitShotIntoRowAndColumn(string shot)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)
         {
             throw new NotImplementedException();
         }

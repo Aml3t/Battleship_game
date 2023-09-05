@@ -21,15 +21,10 @@ namespace Battleship
 
             do
             {
-                // Display grind from activePlayer on where they fired
                 DisplayShotGrid(activePlayer);
 
-                // Ask activePlayer of a spot
-                // Determine if it is a valid shot
-                // Determine shot results
                 RecordPlayerShot(activePlayer, opponent);
 
-                // Determine if the game should continue
                 bool doesGameContinue = GameLogic.PlayerStillActive(opponent);
 
                 if (doesGameContinue == true)
@@ -50,22 +45,44 @@ namespace Battleship
 
             } while (winner != null);
 
+            IdentifyWinner(winner);
+
             Console.ReadLine();
 
         }
 
+        private static void IdentifyWinner(PlayerInfoModel winner)
+        {
+            Console.WriteLine($"Congratulations! {winner.UsersName} is the winner!");
+            Console.WriteLine($"{winner.UsersName} took {GameLogic.GetShotCount(winner)} shots.");
+        }
+
         private static void RecordPlayerShot(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
         {
+            bool isValidShot = false;
+            do
+            {
+                string shot = AskForShot();
+                (string row, int column) = GameLogic.SplitShotIntoRowAndColumn(shot);
+                isValidShot = GameLogic.ValidateShot(activePlayer, row, column);
+
+                if (shot.Length == 2 && Regex.IsMatch(shot, "^[A-E][1-5]"))
+                {
+                    //activePlayer.ShotGrind.
+                }
+                else
+                {
+                    //continue;
+                }
+            } while (isValidShot == false);
+
+        }
+
+        private static string AskForShot()
+        {
             Console.Write("Enter coordinates for a hit: ");
-            string hit = Console.ReadLine();
-            if (hit.Length == 2 && Regex.IsMatch(hit, "^[A-E][1-5]"))
-            {
-                activePlayer.ShotGrind.
-            }
-            else
-            {
-                continue;
-            }
+            string output = Console.ReadLine();
+            return output;
         }
 
         private static void DisplayShotGrid(PlayerInfoModel activePlayer)
