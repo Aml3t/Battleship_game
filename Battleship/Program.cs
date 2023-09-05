@@ -75,10 +75,8 @@ namespace Battleship
 
             } while (isValidShot == false);
 
-            // Determine shot results
             bool isAHit = GameLogic.IdentifyShotResult(opponent, row, column);
 
-            // Record results
             GameLogic.MarkShotResults(activePlayer, row, column, isAHit);
 
         }
