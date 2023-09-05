@@ -66,14 +66,11 @@ namespace Battleship
                 (string row, int column) = GameLogic.SplitShotIntoRowAndColumn(shot);
                 isValidShot = GameLogic.ValidateShot(activePlayer, row, column);
 
-                if (shot.Length == 2 && Regex.IsMatch(shot, "^[A-E][1-5]"))
+                if (isValidShot == false)
                 {
-                    //activePlayer.ShotGrind.
+                    Console.WriteLine("Invalid shot. Please try again.");
                 }
-                else
-                {
-                    //continue;
-                }
+
             } while (isValidShot == false);
 
         }
