@@ -26,22 +26,40 @@ namespace Battleship
         }
         public static bool PlaceShip(PlayerInfoModel model, string location)
         {
-            if (location.Length == 2 && Regex.IsMatch(location,"^[A-E][1-5]"))
+            bool output = false;
+            (string row, int column) = SplitShotIntoRowAndColumn(location);
+
+            bool isValidLocation = ValidateLocation(model, row, column);
+            bool isSpotOpen = ValidateShipLocation(model, row, column);
+
+            if (isValidLocation == true && isSpotOpen == true)
             {
-                GridSpotModel output = new GridSpotModel();
-                char firstCharacter = location[0];
-                //int secondCharacter = location[1];
-                output.SpotLetter = firstCharacter.ToString();
-                output.SpotNumber = int.Parse(location[1].ToString());
-                output.Status = GridSpotStatus.Ship;
-                model.ShipLocations.Add(output);
-                return true;
-            }
-            else
-            {
-                return false;
+                output = true;
             }
 
+            return output;
+
+            /// Verifing if the user input has the correct format
+            //if (location.Length == 2 && Regex.IsMatch(location,"^[A-E][1-5]"))
+            //{
+            //    GridSpotModel output = new GridSpotModel();
+            //    //char firstCharacter = location[0];
+            //    //output.SpotLetter = firstCharacter.ToString();
+            //    //output.SpotNumber = int.Parse(location[1].ToString());
+            //    output.Status = GridSpotStatus.Ship;
+            //    model.ShipLocations.Add(output);
+            //    return true;
+            //}
+        }
+
+        private static bool ValidateShipLocation(PlayerInfoModel model, string row, int column)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static bool ValidateLocation(PlayerInfoModel model, string row, int column)
+        {
+            throw new NotImplementedException();
         }
 
         internal static int GetShotCount(PlayerInfoModel player)
