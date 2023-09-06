@@ -29,14 +29,14 @@ namespace Battleship
             bool output = false;
             (string row, int column) = SplitShotIntoRowAndColumn(location);
 
-            bool isValidLocation = ValidateLocation(model, row, column);
+            bool isValidLocation = ValidateGridLocation(model, row, column);
             bool isSpotOpen = ValidateShipLocation(model, row, column);
 
             if (isValidLocation == true && isSpotOpen == true)
             {
                 model.ShipLocations.Add(new GridSpotModel
                 {
-                    SpotLetter = row,
+                    SpotLetter = row.ToUpper(),
                     SpotNumber = column,
                     Status = GridSpotStatus.Ship
                 });
@@ -44,7 +44,6 @@ namespace Battleship
             }
 
             return output;
-
             /// Verifing if the user input has the correct format
             //if (location.Length == 2 && Regex.IsMatch(location,"^[A-E][1-5]"))
             //{
@@ -60,30 +59,41 @@ namespace Battleship
 
         private static bool ValidateShipLocation(PlayerInfoModel model, string row, int column)
         {
-            bool isValidLocation = false;
-            GridSpotModel output = new GridSpotModel();
-            output.SpotLetter = row;
-            output.SpotNumber = column;
+            bool isValidLocation = true;
 
-            foreach (var spot in model.ShipLocations)
+            foreach (var ship in model.ShipLocations)
             {
-                if (output.Status != GridSpotStatus.Ship)
+                if (ship.SpotLetter == row.ToUpper() && ship.SpotNumber == column)
                 {
-                    isValidLocation = true;
-                }
-                else
-                {
-                    Console.WriteLine($"You have already a ship in location {row}{column}");
+                    isValidLocation = false;
                 }
 
+                // TODO
+                // Check the return mechanism if something goes wrong.
+                //else
+                //{
+                //    Console.WriteLine($"You have already a ship in location {row}{column}");
+                //    Console.WriteLine("Retry");
+                //    continue;
+                //}
             }
 
             return isValidLocation;
         }
 
-        private static bool ValidateLocation(PlayerInfoModel model, string row, int column)
+        private static bool ValidateGridLocation(PlayerInfoModel model, string row, int column)
         {
-            throw new NotImplementedException();
+            bool isValidLocation = false;
+
+            foreach (var spot in model.ShotGrind)
+            {
+                if (spot.SpotLetter == row.ToUpper() && spot.SpotNumber == column)
+                {
+                    isValidLocation = true;
+                }
+            }
+
+            return isValidLocation;
         }
 
         internal static int GetShotCount(PlayerInfoModel player)
@@ -130,7 +140,7 @@ namespace Battleship
             string row = shot[0].ToString();
             int column = int.Parse(shot[1].ToString());
 
-            return (row, 0);
+            return (row, column);
         }
 
         internal static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)

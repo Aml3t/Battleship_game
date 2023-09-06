@@ -81,6 +81,7 @@ namespace Battleship
 
         private static string AskForShot()
         {
+            Console.WriteLine();
             Console.Write("Enter coordinates for a hit: ");
             string output = Console.ReadLine();
             return output;
@@ -115,6 +116,7 @@ namespace Battleship
                     Console.Write(" ? ");
                 }
             }
+            Console.WriteLine();
         }
 
         private static void WelcomeMessage()
@@ -164,7 +166,7 @@ namespace Battleship
 
                 if (isValidLocation == false)
                 {
-                    Console.WriteLine("You entered a wrong location. Try again");
+                    Console.WriteLine("You entered a wrong location. Try again.");
                     continue;
                 }
 
