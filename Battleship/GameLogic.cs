@@ -111,9 +111,18 @@ namespace Battleship
             return shotCount;
         }
 
-        internal static bool IdentifyShotResult(PlayerInfoModel opponent, string row, int column)
+        internal static bool IdentifyShotResult(PlayerInfoModel player, string row, int column)
         {
-            throw new NotImplementedException();
+            bool isAHit = false;
+
+            foreach (var ship in player.ShipLocations)
+            {
+                if (ship.SpotLetter == row.ToUpper() && ship.SpotNumber == column)
+                {
+                    isAHit = true;
+                }
+            }
+            return isAHit;
         }
 
         internal static void MarkShotResults(PlayerInfoModel activePlayer, string row, int column, bool isAHit)
