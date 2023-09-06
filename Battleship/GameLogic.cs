@@ -34,6 +34,12 @@ namespace Battleship
 
             if (isValidLocation == true && isSpotOpen == true)
             {
+                model.ShipLocations.Add(new GridSpotModel
+                {
+                    SpotLetter = row,
+                    SpotNumber = column,
+                    Status = GridSpotStatus.Ship
+                });
                 output = true;
             }
 
@@ -54,7 +60,25 @@ namespace Battleship
 
         private static bool ValidateShipLocation(PlayerInfoModel model, string row, int column)
         {
-            throw new NotImplementedException();
+            bool isValidLocation = false;
+            GridSpotModel output = new GridSpotModel();
+            output.SpotLetter = row;
+            output.SpotNumber = column;
+
+            foreach (var spot in model.ShipLocations)
+            {
+                if (output.Status != GridSpotStatus.Ship)
+                {
+                    isValidLocation = true;
+                }
+                else
+                {
+                    Console.WriteLine($"You have already a ship in location {row}{column}");
+                }
+
+            }
+
+            return isValidLocation;
         }
 
         private static bool ValidateLocation(PlayerInfoModel model, string row, int column)
