@@ -137,8 +137,13 @@ namespace Battleship
 
         internal static (string row, int column) SplitShotIntoRowAndColumn(string shot)
         {
-            string row = shot[0].ToString();
-            int column = int.Parse(shot[1].ToString());
+            string row = "";
+            int column = 0;
+            if (shot.Length == 2 && Regex.IsMatch(shot, "^[A-E][1-5]"))
+            {
+                row = shot[0].ToString();
+                column = int.Parse(shot[1].ToString());
+            }
 
             return (row, column);
         }
