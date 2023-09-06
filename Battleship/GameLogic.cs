@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -139,6 +140,7 @@ namespace Battleship
         {
             string row = "";
             int column = 0;
+
             if (shot.Length == 2 && Regex.IsMatch(shot, "^[A-E][1-5]"))
             {
                 row = shot[0].ToString();
@@ -148,25 +150,22 @@ namespace Battleship
             return (row, column);
         }
 
-        internal static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)
+        internal static bool ValidateShot(PlayerInfoModel player, string row, int column)
         {
-            PlayerInfoModel player = new PlayerInfoModel();
+            bool isValidShot = false;
 
-            GridSpotModel model = new GridSpotModel();
-            model.SpotLetter = row;
-            model.SpotNumber = column;
+            foreach (var gridSpot in player.ShotGrind)
+            {
+                if (gridSpot.SpotLetter == row.ToUpper() && gridSpot.SpotNumber == column)
+                {
+                    if (gridSpot.Status == GridSpotStatus.Empty)
+                    {
+                        isValidShot = true;
+                    }
+                }
+            }
 
-            //if (model.Status. == GridSpotStatus.Ship)
-            //{
-
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-            return true;
-
+            return isValidShot;
         }
 
         private static void AddGridSpot(PlayerInfoModel model, string letter, int number)
