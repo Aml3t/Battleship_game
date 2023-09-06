@@ -61,12 +61,23 @@ namespace Battleship
 
         internal static bool PlayerStillActive(PlayerInfoModel opponent)
         {
-            throw new NotImplementedException();
+            
+            if (opponent.ShipLocation.Count != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         internal static (string row, int column) SplitShotIntoRowAndColumn(string shot)
         {
-            throw new NotImplementedException();
+            string row = shot[0].ToString();
+            int column = int.Parse(shot[1].ToString());
+
+            return (row, 0);
         }
 
         internal static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)

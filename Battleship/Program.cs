@@ -36,7 +36,6 @@ namespace Battleship
 
                     // Swap using Tuple
                     (activePlayer, opponent) = (opponent, activePlayer);
-
                 }
                 else
                 {
@@ -48,7 +47,6 @@ namespace Battleship
             IdentifyWinner(winner);
 
             Console.ReadLine();
-
         }
 
         private static void IdentifyWinner(PlayerInfoModel winner)
