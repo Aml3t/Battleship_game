@@ -86,7 +86,7 @@ namespace Battleship
         {
             bool isValidLocation = false;
 
-            foreach (var spot in model.ShotGrind)
+            foreach (var spot in model.ShotGrid)
             {
                 if (spot.SpotLetter == row.ToUpper() && spot.SpotNumber == column)
                 {
@@ -101,7 +101,7 @@ namespace Battleship
         {
             int shotCount = 0;
 
-            foreach (var ship in player.ShotGrind)
+            foreach (var ship in player.ShotGrid)
             {
                 if (ship.Status != GridSpotStatus.Empty)
                 {
@@ -125,9 +125,22 @@ namespace Battleship
             return isAHit;
         }
 
-        internal static void MarkShotResults(PlayerInfoModel activePlayer, string row, int column, bool isAHit)
+        internal static void MarkShotResults(PlayerInfoModel player, string row, int column, bool isAHit)
         {
-            throw new NotImplementedException();
+            foreach (var gridSpot in player.ShotGrid)
+            {
+                if (gridSpot.SpotLetter == row.ToUpper() && gridSpot.SpotNumber == column)
+                {
+                    if (isAHit)
+                    {
+                        gridSpot.Status = GridSpotStatus.Hit;
+                    }
+                    else
+                    {
+                        gridSpot.Status = GridSpotStatus.Miss;
+                    }
+                }
+            }
         }
 
         internal static bool PlayerStillActive(PlayerInfoModel player)
@@ -163,7 +176,7 @@ namespace Battleship
         {
             bool isValidShot = false;
 
-            foreach (var gridSpot in player.ShotGrind)
+            foreach (var gridSpot in player.ShotGrid)
             {
                 if (gridSpot.SpotLetter == row.ToUpper() && gridSpot.SpotNumber == column)
                 {
@@ -186,7 +199,7 @@ namespace Battleship
                 Status = GridSpotStatus.Empty
             };
 
-            model.ShotGrind.Add(spot);
+            model.ShotGrid.Add(spot);
         }
     }
 }
