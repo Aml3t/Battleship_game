@@ -34,7 +34,7 @@ namespace Battleship
                 output.SpotLetter = firstCharacter.ToString();
                 output.SpotNumber = int.Parse(location[1].ToString());
                 output.Status = GridSpotStatus.Ship;
-                model.ShipLocation.Add(output);
+                model.ShipLocations.Add(output);
                 return true;
             }
             else
@@ -44,9 +44,18 @@ namespace Battleship
 
         }
 
-        internal static int GetShotCount(PlayerInfoModel winner)
+        internal static int GetShotCount(PlayerInfoModel player)
         {
-            throw new NotImplementedException();
+            int shotCount = 0;
+
+            foreach (var ship in player.ShotGrind)
+            {
+                if (ship.Status != GridSpotStatus.Empty)
+                {
+                    shotCount += 1;
+                }
+            }
+            return shotCount;
         }
 
         internal static bool IdentifyShotResult(PlayerInfoModel opponent, string row, int column)
@@ -59,17 +68,19 @@ namespace Battleship
             throw new NotImplementedException();
         }
 
-        internal static bool PlayerStillActive(PlayerInfoModel opponent)
+        internal static bool PlayerStillActive(PlayerInfoModel player)
         {
-            
-            if (opponent.ShipLocation.Count != 0)
+            bool isActive = false;
+
+            foreach (var ship in player.ShipLocations)
             {
-                return true;
+                if (ship.Status != GridSpotStatus.Sunk)
+                {
+                    isActive = true;
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return isActive;
         }
 
         internal static (string row, int column) SplitShotIntoRowAndColumn(string shot)
@@ -82,7 +93,23 @@ namespace Battleship
 
         internal static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)
         {
-            throw new NotImplementedException();
+            PlayerInfoModel player = new PlayerInfoModel();
+
+            GridSpotModel model = new GridSpotModel();
+            model.SpotLetter = row;
+            model.SpotNumber = column;
+
+            //if (model.Status. == GridSpotStatus.Ship)
+            //{
+
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+            return true;
+
         }
 
         private static void AddGridSpot(PlayerInfoModel model, string letter, int number)

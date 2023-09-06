@@ -157,7 +157,7 @@ namespace Battleship
         {
             do
             {
-                Console.Write($"Place the ship number {model.ShipLocation.Count + 1}: ");
+                Console.Write($"Place the ship number {model.ShipLocations.Count + 1}: ");
                 string location = Console.ReadLine(); 
 
                 bool isValidLocation = GameLogic.PlaceShip(model, location);
@@ -168,7 +168,7 @@ namespace Battleship
                     continue;
                 }
 
-            } while (model.ShipLocation.Count < 5);
+            } while (model.ShipLocations.Count < 5);
 
         }
     }
