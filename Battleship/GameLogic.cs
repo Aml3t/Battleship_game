@@ -134,10 +134,15 @@ namespace Battleship
                     if (isAHit)
                     {
                         gridSpot.Status = GridSpotStatus.Hit;
+                        Console.WriteLine("Your shot was a HIT");
+                        Console.ReadLine();
                     }
                     else
                     {
                         gridSpot.Status = GridSpotStatus.Miss;
+                        Console.WriteLine("Your shot was a MISS");
+                        Console.ReadLine();
+
                     }
                 }
             }

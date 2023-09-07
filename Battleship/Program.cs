@@ -21,8 +21,9 @@ namespace Battleship
 
             do
             {
-                Console.WriteLine($"The shot's you made against {opponent.UsersName}");
+                Console.WriteLine($"The shots you made against {opponent.UsersName}");
                 Console.WriteLine();
+
                 DisplayShotGrid(activePlayer);
 
                 RecordPlayerShot(activePlayer, opponent);
@@ -108,7 +109,7 @@ namespace Battleship
                 }
                 else if (gridSpot.Status == GridSpotStatus.Hit)
                 {
-                    Console.Write(" X ");
+                    Console.Write($" X ");
                 }
                 else if (gridSpot.Status == GridSpotStatus.Miss)
                 {
