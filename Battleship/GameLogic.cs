@@ -147,7 +147,7 @@ namespace Battleship
         {
             bool isActive = false;
 
-            foreach (var ship in player.ShipLocations)
+            foreach (var ship in player.ShipLocations )
             {
                 if (ship.Status != GridSpotStatus.Sunk)
                 {

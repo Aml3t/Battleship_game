@@ -17,10 +17,12 @@ namespace Battleship
 
             PlayerInfoModel activePlayer = CreatePlayer("Player 1");
             PlayerInfoModel opponent = CreatePlayer("Player 2");
-            PlayerInfoModel winner = null;
+            PlayerInfoModel winner = new PlayerInfoModel();
 
             do
             {
+                Console.WriteLine($"The shot's you made against {opponent.UsersName}");
+                Console.WriteLine();
                 DisplayShotGrid(activePlayer);
 
                 RecordPlayerShot(activePlayer, opponent);
@@ -62,7 +64,7 @@ namespace Battleship
             int column = 0;
             do
             {
-                string shot = AskForShot();
+                string shot = AskForShot(activePlayer);
                 (row, column) = GameLogic.SplitShotIntoRowAndColumn(shot);
                 isValidShot = GameLogic.ValidateShot(activePlayer, row, column);
 
@@ -79,11 +81,12 @@ namespace Battleship
 
         }
 
-        private static string AskForShot()
+        private static string AskForShot(PlayerInfoModel activePlayer)
         {
             Console.WriteLine();
-            Console.Write("Enter coordinates for a hit: ");
+            Console.Write($"{activePlayer.UsersName} enter coordinates for a hit: ");
             string output = Console.ReadLine();
+            Console.Clear();
             return output;
         }
 
@@ -138,6 +141,7 @@ namespace Battleship
 
             // Load up the shot grid
             GameLogic.InitializeGrid(output);
+            Console.WriteLine();
 
             // Ask the user for their 5 ship placements
             PlaceShips(output);
@@ -157,6 +161,7 @@ namespace Battleship
 
         private static void PlaceShips(PlayerInfoModel model)
         {
+            Console.WriteLine();
             do
             {
                 Console.Write($"Place the ship number {model.ShipLocations.Count + 1}: ");
