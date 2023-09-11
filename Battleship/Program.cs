@@ -133,6 +133,8 @@ namespace Battleship
                 }
             }
             Console.WriteLine();
+            Console.WriteLine();
+
         }
 
         private static void WelcomeMessage()
