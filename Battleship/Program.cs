@@ -66,8 +66,20 @@ namespace Battleship
             do
             {
                 string shot = AskForShot(activePlayer);
-                (row, column) = GameLogic.SplitShotIntoRowAndColumn(shot);
-                isValidShot = GameLogic.ValidateShot(activePlayer, row, column);
+                
+                // Extra security for misstypes. I have a better checking mechanism.
+                // It's reduntant, so we can remove the try-catch.
+                try
+                {
+                    (row, column) = GameLogic.SplitShotIntoRowAndColumn(shot);
+                    isValidShot = GameLogic.ValidateShot(activePlayer, row, column);
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine(ex.Message);
+                    isValidShot = false;
+                }
 
                 if (isValidShot == false)
                 {
