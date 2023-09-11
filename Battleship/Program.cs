@@ -92,6 +92,22 @@ namespace Battleship
 
             GameLogic.MarkShotResults(activePlayer, row, column, isAHit);
 
+            // Again, reduntant method for showing the hit or miss. Made a better implementation.
+            DisplayShotResults(row, column, isAHit);
+
+        }
+
+        private static void DisplayShotResults(string row, int column, bool isAHit)
+        {
+            if (isAHit == true)
+            {
+                Console.WriteLine($"{row}{column} is a Hit!");
+            }
+            else
+            {
+                Console.WriteLine($"{row}{column} is a miss!");
+            }
+            Console.WriteLine();
         }
 
         private static string AskForShot(PlayerInfoModel activePlayer)
