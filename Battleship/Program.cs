@@ -17,7 +17,7 @@ namespace Battleship
 
             PlayerInfoModel activePlayer = CreatePlayer("Player 1");
             PlayerInfoModel opponent = CreatePlayer("Player 2");
-            PlayerInfoModel winner = new PlayerInfoModel();
+            PlayerInfoModel winner = null;
 
             do
             {
@@ -45,7 +45,7 @@ namespace Battleship
                     winner = activePlayer;
                 }
 
-            } while (winner != null);
+            } while (winner == null);
 
             IdentifyWinner(winner);
 
@@ -137,15 +137,15 @@ namespace Battleship
                 }
                 else if (gridSpot.Status == GridSpotStatus.Hit)
                 {
-                    Console.Write(" X ");
+                    Console.Write(" X  ");
                 }
                 else if (gridSpot.Status == GridSpotStatus.Miss)
                 {
-                    Console.Write(" O ");
+                    Console.Write(" O  ");
                 }
                 else
                 {
-                    Console.Write(" ? ");
+                    Console.Write(" ?  ");
                 }
             }
             Console.WriteLine();
