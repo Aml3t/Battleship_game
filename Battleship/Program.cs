@@ -109,7 +109,7 @@ namespace Battleship
                 }
                 else if (gridSpot.Status == GridSpotStatus.Hit)
                 {
-                    Console.Write($" X ");
+                    Console.Write(" X ");
                 }
                 else if (gridSpot.Status == GridSpotStatus.Miss)
                 {
